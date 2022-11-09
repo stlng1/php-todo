@@ -69,7 +69,7 @@ pipeline {
                     "files": [
                       {
                        "pattern": "php-todo.zip",
-                       "target": "<name-of-artifact-repository>/php-todo",
+                       "target": "php-todo/php-todo",
                        "props": "type=zip;status=ready"
 
                        }
