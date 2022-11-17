@@ -1,5 +1,5 @@
-pipeline {
-    agent { node { label 'random-slaves' } }
+
+node("random-slaves") {
 
   stages {
 
