@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  frontend:
+    build: .
+    image: stlng/php-todo-${BRANCH_NAME}:${BUILD_NUMBER}
+    container_name: php-todo
+    env_file:
+      - .env
+    ports:
+      - "8000:80"
+    volumes:
+      - frontend:/var/www/html    
+    networks:
+      - app_network
+    links:
+      - db 
+  db:
+    image: mysql/mysql-server:latest
+    container_name: mysqlserverhost
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      - MYSQL_DATABASE='${DB_DATABASE}'
+      - MYSQL_USER='${DB_USERNAME}'
+      - MYSQL_PASSWORD='${DB_PASSWORD}'
+      - MYSQL_ROOT_PASSWORD='${ROOT_PASSWORD}'
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - app_network
+volumes:
+  frontend:
+  db:
+networks:
+  app_network : {}
+  

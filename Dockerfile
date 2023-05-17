@@ -8,8 +8,6 @@ RUN pecl install -o -f redis \
     && rm -rf /tmp/pear \
     && docker-php-ext-enable redis
 
-# WORKDIR /var/www
-# COPY . .
 COPY --from=composer:2.3.5 /usr/bin/composer /usr/bin/composer
 
 ENV PORT=8000
